@@ -67,11 +67,13 @@ fetchDay(day);
 
 tomorrow.setDate(today.getDate() + 1);
 day = tomorrow.toISOString().slice(0, 10);
-fetchDay(day);
+//fetchDay(day);
+setTimeout(fetchDay(day),2000);
 
 tomorrow.setDate(today.getDate() + 2);
 day = tomorrow.toISOString().slice(0, 10);
-fetchDay(day);
+//fetchDay(day);
+setTimeout(fetchDay(day),3000);
 
 </script>
 
