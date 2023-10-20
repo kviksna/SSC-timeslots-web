@@ -1,10 +1,7 @@
-<body bgcolor=black text=lightgray>
+<body bgcolor=black text=gray>
 <div id="out"></div>
-<br>
-<div id="out_table"></div>
 <script>
 const divOut = document.getElementById('out');
-const divOutTable = document.getElementById('out_table');
 
 function fetchDay(day) {
 fetch("https://bookla.com/api/v3/timeslots", {
@@ -47,31 +44,14 @@ fetch("https://bookla.com/api/v3/timeslots", {
   .then(data => {
     //divOut.innerHTML += JSON.stringify(data); //Debug
 
-    // Create the HTML table
-    let htmlTable = "<style>th, td {border: 1px solid black; padding: 5px;}</style>";
-    htmlTable += "<table style='border-collapse: collapse; border: 1px solid black;'>";
-
-    // Generate table headers
-    htmlTable += "<tr><th>Date / h</th>";
-    // ... Generate header for each hour ...
-    htmlTable += "</tr>";
-	  
 	divOut.innerHTML += day;
 	data.calendars.forEach(calendar => {
 		calendar.timeslots.forEach(ts => {
 			divOut.innerHTML += "&nbsp;&nbsp;&nbsp;" + (parseInt(new Date(ts.startTime).getUTCHours())+3) + ":(" + ts.spotsTaken + "/" + ts.spotsTotal + ")";
-
-	  htmlTable += "<tr>";
-          htmlTable += `<td>${date} (${weekday_number}d)</td>`;
-          // ... Generate cell for each hour ...
-          htmlTable += "</tr>";
-
 	});
 	divOut.innerHTML += "\n<br>";
-	htmlTable += "</table>";
 });
-    // Display the HTML table inside the div
-    divOutTable.innerHTML = htmlTable;
+	
   })
   .catch(error => {
     console.error("Request error:", error);
@@ -83,17 +63,14 @@ const tomorrow = new Date(today);
 
 tomorrow.setDate(today.getDate() + 0);
 var day = tomorrow.toISOString().slice(0, 10);
-
 fetchDay(day);
 
 tomorrow.setDate(today.getDate() + 1);
-var day = tomorrow.toISOString().slice(0, 10);
-
+day = tomorrow.toISOString().slice(0, 10);
 fetchDay(day);
 
 tomorrow.setDate(today.getDate() + 2);
-var day = tomorrow.toISOString().slice(0, 10);
-
+day = tomorrow.toISOString().slice(0, 10);
 fetchDay(day);
 
 </script>
