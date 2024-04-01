@@ -51,7 +51,7 @@ fetch("https://bookla.com/api/v3/timeslots", {
 	divOut.innerHTML += day;
 	data.calendars.forEach(calendar => {
 		calendar.timeslots.forEach(ts => {
-			divOut.innerHTML += "&nbsp;&nbsp;&nbsp;" + (parseInt(new Date(ts.startTime).getUTCHours())+2) + ":(" + ts.spotsTaken + "/" + ts.spotsTotal + ")";
+			divOut.innerHTML += "&nbsp;&nbsp;&nbsp;" + (parseInt(new Date(ts.startTime).getUTCHours())+3) + ":(" + ts.spotsTaken + "/" + ts.spotsTotal + ")";
 	});
 	divOut.innerHTML += "\n<br>";
 });
